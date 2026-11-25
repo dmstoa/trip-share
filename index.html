@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>양주 가족여행</title>
+
+  <!-- 카카오톡 공유 미리보기 (배포 후 og:url, og:image를 절대주소로 바꾸세요) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="양주 가족여행 일정" />
+  <meta property="og:description" content="12/5(토) ~ 12/6(일) · 눌러서 일정과 길안내 보기" />
+  <!-- <meta property="og:url" content="https://아이디.github.io/trip-share/" /> -->
+  <!-- <meta property="og:image" content="https://아이디.github.io/trip-share/assets/og-image.jpg" /> -->
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 상단 바 -->
+  <header class="topbar">
+    <h1 id="trip-title" class="topbar__title">여행 일정</h1>
+    <button id="open-tickets" class="topbar__btn" aria-label="티켓 보관함">
+      🎫 <span>티켓</span> <span id="ticket-count" class="count" hidden>0</span>
+    </button>
+  </header>
+
+  <!-- 지도 (화면 위쪽 절반 고정) -->
+  <section class="map-wrap">
+    <div id="map" class="map" aria-label="일정 지도"></div>
+    <div id="map-empty" class="map-empty" hidden>📍 이 날은 지도에 표시할 좌표가 아직 없어요</div>
+    <button id="map-toggle" class="map-toggle" aria-label="지도 크게 보기">⤢ 지도 크게</button>
+  </section>
+
+  <!-- 일정 시트 (여기만 스크롤) -->
+  <main id="sheet" class="sheet">
+    <div class="sheet__handle"></div>
+    <div class="summary">
+      <span id="trip-dates" class="summary__dates"></span>
+      <span id="trip-badge" class="summary__badge" hidden></span>
+    </div>
+    <nav id="chips" class="chips" role="tablist"></nav>
+    <div id="days"></div>
+  </main>
+
+  <!-- 티켓 보관함 -->
+  <div id="tickets-modal" class="modal" hidden>
+    <div class="modal__panel">
+      <div class="modal__head">
+        <h2>🎫 티켓 보관함</h2>
+        <button class="modal__close" data-close aria-label="닫기">✕</button>
+      </div>
+      <p class="modal__note">누르면 크게 열려요. 입장할 때 화면을 보여주세요.</p>
+      <ul id="ticket-list" class="ticket-list"></ul>
+    </div>
+  </div>
+
+  <!-- 티켓 크게 보기 (QR 찍을 때) -->
+  <div id="ticket-viewer" class="viewer" hidden>
+    <div class="viewer__bar">
+      <span id="viewer-title"></span>
+      <button class="viewer__close" data-close aria-label="닫기">✕</button>
+    </div>
+    <img id="viewer-img" alt="" />
+  </div>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/navlink.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
